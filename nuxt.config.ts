@@ -2,5 +2,16 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss']
+  modules: ['@nuxtjs/tailwindcss'],
+  css: ['@/assets/css/main.css'],
+
+  runtimeConfig: {
+    public: {
+      MODE: process.env.MODE,
+      INTERNAL_EH_BASE_URL:
+        process.env.MODE === 'development'
+          ? process.env.INTERNAL_EH_BASE_URL_DEV
+          : process.env.INTERNAL_EH_BASE_URL_PROD
+    },
+  },
 })
