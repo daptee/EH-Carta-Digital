@@ -16,7 +16,7 @@ const config: Config = {
         blueGray: '',
         intermediateGray: '',
         decorativeGreen: '',
-        relaxationBrown: '',
+        relaxationBrown: '#e2bd96',
         scentedGreen: '',
       },
     },

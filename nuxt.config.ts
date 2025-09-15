@@ -11,7 +11,11 @@ export default defineNuxtConfig({
       INTERNAL_EH_BASE_URL:
         process.env.MODE === 'development'
           ? process.env.INTERNAL_EH_BASE_URL_DEV
-          : process.env.INTERNAL_EH_BASE_URL_PROD
+          : process.env.INTERNAL_EH_BASE_URL_PROD,
+      OUR_EH_CAFETERIA_BASE_URL:
+        process.env.MODE === 'development'
+          ? process.env.OUR_EH_CAFETERIA_BASE_URL_DEV
+          : process.env.OUR_EH_CAFETERIA_BASE_URL_PROD,
     },
   },
 })
