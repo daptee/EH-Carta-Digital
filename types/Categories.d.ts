@@ -1,3 +1,5 @@
+import type { Product } from "./Products"
+
 export interface Category {
     ID: string
     RUBRO: string
@@ -19,4 +21,9 @@ export interface CategoryImage {
 export interface CategoryWithImage extends Category {
   img: string | null
   color: string | null
+  products: ProductWithImage[]
+}
+
+export interface ProductWithImage extends Product {
+  images: ProductImage[]
 }
