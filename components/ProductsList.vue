@@ -1,8 +1,8 @@
 <template>
-    <section class="bg-mainBlue">
-        <h1 class="text-[40px] font-bold text-white">{{ props.title }}</h1>
-        <div v-for="value in props.products" :key="value.ID" class="flex flex-col gap-[20px]">
+    <section class="bg-mainBlue px-[87px] py-[94px] flex flex-col gap-[13px]">
+        <div v-for="value in props.products" :key="value.ID">
             <UniqueProduct v-if="value.VARIANTES1.length === 1" :product="value" />
+            <VariantProduct v-if="value.VARIANTES1.length > 1" :title="value.NOMRE" :variants="value.VARIANTES1" :images="value.images" />
         </div>
     </section>
 </template>

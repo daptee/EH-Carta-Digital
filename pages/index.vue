@@ -1,13 +1,16 @@
 <template>
-    <main class="max-w-[1080px] mx-auto min-h-screen">
+    <main>
         <FrontCover v-if="showFrontCover" @close="showFrontCover = false" />
         
         <header class="bg-mainBlue w-full pt-[112px] px-[107px]">
-            <Logo class="w-[270px]" />
+            <div class="flex items-center justify-between pb-[27px]">
+              <Logo class="w-[270px]" />
+              <Languages />
+            </div>
             <HeaderList :categories="categories" />
         </header>
 
-        <article v-for="category in categories" :key="category.ID">
+        <article v-for="category in categories" :key="category.ID" :id="category.ID">
             <section class="flex flex-col header-section">
                 <HeaderCategory :title="category.RUBRO" />
             </section>
