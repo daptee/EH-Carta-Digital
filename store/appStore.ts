@@ -1,11 +1,13 @@
 import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
-export const useAppStore = defineStore('app', () => {
-  const language = ref('es')
+export type Locale = 'es' | 'en' | 'pt'
 
-  const setLanguage = (refValue: any) => {
-    language.value = refValue
+export const useAppStore = defineStore('app', () => {
+  const language = ref<Locale>('es')
+
+  const setLanguage = (newLang: Locale) => {
+    language.value = newLang
   }
 
   return { language, setLanguage }

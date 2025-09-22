@@ -2,39 +2,53 @@
     <main>
         <FrontCover v-if="showFrontCover" @close="showFrontCover = false" />
         
-        <header class="bg-mainBlue w-full pt-[112px] px-[107px]">
-            <div class="flex items-center justify-between pb-[27px]">
+        <section v-else>
+          <header class="bg-mainBlue w-full pt-[112px] px-[107px]">
+            <div class="flex items-center justify-between">
               <Logo class="w-[270px]" />
               <Languages />
             </div>
-            <HeaderList :categories="categories" />
         </header>
+        
+        <HeaderList :categories="categories" />
 
         <article v-for="category in categories" :key="category.ID" :id="category.ID">
-            <section class="flex flex-col header-section">
-                <HeaderCategory :title="category.RUBRO" />
+            <section class="flex flex-col header-section pt-[127px]">
+                <HeaderCategory :title="getCategoryTitle(category, language.language)" :img="category.img" />
             </section>
-
+            <CafeLanding v-if="category.RUBRO === 'CAFETERIA'" />
             <ProductsList :title="category.RUBRO" :products="category.products" />
         </article>
+        </section>
     </main>
 </template>
 
 <script setup lang="ts">
 import { fetchCategories, fetchCategoryImages } from '~/services/categories/categories.service';
 import { fetchProducts, fetchProductsImages } from '~/services/categories/products.service';
+import { useAppStore } from '~/store/appStore';
 import type { CategoryWithImage } from '~/types/Categories';
+import { getCategoryTitle } from '~/utils/getTranslates';
 
-const showFrontCover = ref(false)
+const showFrontCover = ref(true)
 const config = useRuntimeConfig()
 const categories = ref<CategoryWithImage[]>([])
+const language = useAppStore()
 
 const getCategoryProducts = async () => {
   try {
-    const categoriesResponse = await fetchCategories(3)
-    const imagesResponse = await fetchCategoryImages()
-    const productsResponse = await fetchProducts(3)
-    const imagesProductsResponse = await fetchProductsImages()
+  
+    const [
+      categoriesResponse,
+      imagesResponse,
+      productsResponse,
+      imagesProductsResponse
+    ] = await Promise.all([
+      fetchCategories(3),
+      fetchCategoryImages(),
+      fetchProducts(3),
+      fetchProductsImages()
+    ])
 
     categories.value = categoriesResponse
       .map(cat => {
@@ -70,7 +84,6 @@ const getCategoryProducts = async () => {
     categories.value = []
   }
 }
-
 
 getCategoryProducts()
 

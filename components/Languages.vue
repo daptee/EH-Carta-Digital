@@ -1,5 +1,5 @@
 <template>
-  <div class="relative inline-block w-[200px]">
+  <div class="relative inline-block w-[200px] z-[9999]">
     <div
       class="flex justify-between items-center bg-transparent border border-white rounded-[10px] px-[29px] py-[18px] text-white font-extralight cursor-pointer"
       @click="open = !open"
@@ -26,13 +26,13 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { useAppStore } from '~/store/appStore'
+import { useAppStore, type Locale } from '~/store/appStore'
 
 const open = ref(false)
 const appStore = useAppStore()
 const selected = ref(appStore.language)
 
-const languagesOptions = [
+const languagesOptions: { value: Locale, label: string }[] = [
   { value: 'es', label: 'ESPAÑOL' },
   { value: 'en', label: 'ENGLISH' },
   { value: 'pt', label: 'PORTUGUÊS' }
@@ -42,7 +42,7 @@ const selectedLabel = computed(() => {
   return languagesOptions.find(lang => lang.value === selected.value)?.label || ''
 })
 
-const selectLanguage = (lang: { value: string, label: string }) => {
+const selectLanguage = (lang: { value: Locale, label: string }) => {
   selected.value = lang.value
   appStore.setLanguage(lang.value)
   open.value = false

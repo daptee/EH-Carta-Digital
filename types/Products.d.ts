@@ -21,7 +21,7 @@ interface Variant {
     VARIANTES2: Variant2[]
 }
 
-interface Variant2 {
+export interface Variant2 {
     VAR2: string
     VARIACION2_TIT: string
     VARIACION2_TIT_ENG: string

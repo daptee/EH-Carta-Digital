@@ -10,9 +10,9 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        lightGray: '',
+        lightGray: '#c5c6cb',
         mainBlue: '#3E4251',
-        secondaryBrown: '',
+        secondaryBrown: '#926948',
         blueGray: '',
         intermediateGray: '',
         decorativeGreen: '',

@@ -1,6 +1,10 @@
 <template>
   <section class="flex items-center justify-center header-category py-[60px] gap-[48px]">
-    <IconsPlaceholder class="h-[181px] w-[181px]" />
+    <div class="border-[8px] border-[#656874] rounded-full h-[181px] w-[181px]">
+      <img v-if="props.img" :src="props.img" class="w-fit h-fit p-2 border-[8px] rounded-full border-[#848690] bg-white" alt="Icono de categoria">
+      <IconsPlaceholder v-else class="h-[181px] w-[181px] p-2 border-[2px] rounded-full border-[#848690] bg-white" />
+    </div>
+
     <h2 class="text-[64px] text-relaxationBrown font-semibold">{{ props.title }}</h2>
   </section>
 </template>

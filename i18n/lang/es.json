@@ -1,0 +1,34 @@
+{
+  "water": "Agua",
+  "milk": "Leche",
+  "foam": "Espuma",
+  "chocolate": "Chocolate",
+  "coffee": "Café",
+  "ice": "Hielo",
+
+  "available_milks": "Leches disponibles para cafés:",
+  "milk_list": "entera, descremada, deslactosada, almendras",
+
+  "espresso": "Expresso",
+  "lungo": "Lungo",
+  "americano": "Americano",
+  "filtered": "Filtrado",
+  "capuccino": "Capuccino",
+  "flat_white": "Flat White",
+  "latte": "Latte",
+
+  "volume_240": "240cc",
+  "volume_180": "180cc",
+  "volume_100": "100cc",
+
+  "temp_note": "La temperatura del café de especialidad es de 70° aproximadamente, de preferirlo más caliente hacérselo saber al personal.",
+
+  "iced_coffee": "Iced Coffe",
+  "mate": "Mate",
+  "without_alcohol": "Sin Alcohol",
+  "with_alcohol": "Con Alcohol",
+
+  "takeaway": "Take away",
+  "beans": "Llevate nuestro café en granos",
+  "discount": "10% off más 5% si traés tu mug EH"
+}
