@@ -31,6 +31,7 @@ import { useAppStore, type Locale } from '~/store/appStore'
 const open = ref(false)
 const appStore = useAppStore()
 const selected = ref(appStore.language)
+const { locale } = useI18n()
 
 const languagesOptions: { value: Locale, label: string }[] = [
   { value: 'es', label: 'ESPAÑOL' },
@@ -44,7 +45,7 @@ const selectedLabel = computed(() => {
 
 const selectLanguage = (lang: { value: Locale, label: string }) => {
   selected.value = lang.value
-  appStore.setLanguage(lang.value)
+  appStore.setLanguage(selected.value, locale)
   open.value = false
 }
 </script>
