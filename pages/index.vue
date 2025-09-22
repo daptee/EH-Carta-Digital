@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <main class="max-w-[1080px]">
         <FrontCover v-if="showFrontCover" @close="showFrontCover = false" />
         
         <section v-else>

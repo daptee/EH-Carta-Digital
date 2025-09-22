@@ -24,8 +24,6 @@ const emit = defineEmits<FrontCoverEmits>()
 <style scoped>
 .front-cover {
     min-height: 100vh;
-    min-width: 100vw;
-    max-width: 100vw;
     max-height: 100vh;
     background: linear-gradient(0.42deg, #E2BE96 3.95%, #C1A389 10.64%, #958077 21.61%, #736869 32.87%, #5B565E 44.33%, #4A4B57 56.06%, #414552 68.22%, #3E4351 81.53%);
 }
