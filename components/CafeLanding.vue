@@ -143,14 +143,23 @@
 
 <script setup lang="ts">
 import { useAppStore } from '~/store/appStore'
-import { useI18n } from 'vue-i18n'
+
+import es from '~/i18n/lang/es.json'
+import en from '~/i18n/lang/en.json'
+import pt from '~/i18n/lang/pt.json'
 
 const appStore = useAppStore()
-const { t, locale } = useI18n()
 
-watch(() => appStore.language, (newLang) => {
-  locale.value = newLang
-})
+const messages: Record<string, Record<string, string>> = {
+  es,
+  en,
+  pt,
+}
+
+const t = (key: string) => {
+  const lang = appStore.language || 'es'
+  return messages[lang][key] || key
+}
 </script>
 
 <style scoped>

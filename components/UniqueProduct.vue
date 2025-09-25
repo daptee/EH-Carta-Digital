@@ -2,7 +2,9 @@
     <div class="flex gap-[47px] items-center grow">
 
         <ImagePopup v-if="principalImage" :image="`${config.public.OUR_EH_CAFETERIA_BASE_URL}${principalImage}`" class="w-[95px] h-[95px]" />
-        <IconsPlaceholder v-else class="w-[95px] h-[95px] p-2 border-[2px] rounded-full border-[#848690]" />
+        <div v-else class="w-[95px] h-[95px] border-[4px] rounded-full border-[#656874]">
+            <IconsPlaceholder class="w-full h-full border-[4px] rounded-full border-[#848690]" />
+        </div>
         
         <div class="flex justify-between grow gap-[9px]">
             <p class="text-[32px] font-medium text-white">{{ getProductName(props.product, appStore.language) }}</p>
