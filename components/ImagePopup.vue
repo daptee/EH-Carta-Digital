@@ -1,9 +1,9 @@
 
 <template>
   <div>
-    <div @click="showPopup = true" class="cursor-pointer">
+    <div @click="showPopup = true" class="cursor-pointer w-[95px] h-[95px] border-[4px] rounded-full border-[#656874]">
       <img :src="props.image"
-                class="w-full h-full border-[2px] rounded-full border-[#848690] object-cover"
+                class="w-full h-full border-[4px] rounded-full border-[#848690] object-cover"
                 alt="Icono de categoria" />
     </div>
 
