@@ -9,6 +9,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       MODE: process.env.MODE,
+      PORT: process.env.PORT,
       INTERNAL_EH_BASE_URL:
         process.env.MODE === 'development'
           ? process.env.INTERNAL_EH_BASE_URL_DEV
@@ -18,5 +19,9 @@ export default defineNuxtConfig({
           ? process.env.OUR_EH_CAFETERIA_BASE_URL_DEV
           : process.env.OUR_EH_CAFETERIA_BASE_URL_PROD,
     },
+  },
+  devServer: {
+    port: Number(process.env.PORT) || 3101,
+    host: '0.0.0.0'
   },
 })
