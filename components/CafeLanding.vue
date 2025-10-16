@@ -1,32 +1,35 @@
 <template>
     <section>
         <section class="px-[84px] pt-[56px] bg-mainBlue">
-        <article class="flex justify-between text-[28px] text-white">
-            <div class="flex flex-col items-center gap-[13px]">
-                <IconsWater />
-                <p>{{ t('water') }}</p>
-            </div>
-            <div class="flex flex-col items-center gap-[13px]">
-                <IconsMilk />
-                <p>{{ t('milk') }}</p>
-            </div>
-            <div class="flex flex-col items-center gap-[13px]">
-                <IconsFoam />
-                <p>{{ t('foam') }}</p>
-            </div>
-            <div class="flex flex-col items-center gap-[13px]">
-                <IconsChocolate />
-                <p>{{ t('chocolate') }}</p>
-            </div>
-            <div class="flex flex-col items-center gap-[13px]">
-                <IconsCoffe />
-                <p>{{ t('coffee') }}</p>
-            </div>
-            <div class="flex flex-col items-center gap-[13px]">
-                <IconsIce />
-                <p>{{ t('ice') }}</p>
-            </div>
-        </article>
+        <article
+  class="flex flex-wrap justify-center gap-[32px] text-[28px] text-white"
+>
+  <div class="flex flex-col items-center gap-[13px] min-w-[90px]">
+    <IconsWater class="w-[95px] h-[95px]" />
+    <p>{{ t('water') }}</p>
+  </div>
+  <div class="flex flex-col items-center gap-[13px] min-w-[90px]">
+    <IconsMilk class="w-[95px] h-[95px]" />
+    <p>{{ t('milk') }}</p>
+  </div>
+  <div class="flex flex-col items-center gap-[13px] min-w-[90px]">
+    <IconsFoam class="w-[95px] h-[95px]" />
+    <p>{{ t('foam') }}</p>
+  </div>
+  <div class="flex flex-col items-center gap-[13px] min-w-[90px]">
+    <IconsChocolate class="w-[95px] h-[95px]" />
+    <p>{{ t('chocolate') }}</p>
+  </div>
+  <div class="flex flex-col items-center gap-[13px] min-w-[90px]">
+    <IconsCoffe class="w-[95px] h-[95px]" />
+    <p>{{ t('coffee') }}</p>
+  </div>
+  <div class="flex flex-col items-center gap-[13px] min-w-[90px]">
+    <IconsIce class="w-[95px] h-[95px]" />
+    <p>{{ t('ice') }}</p>
+  </div>
+</article>
+
 
         <article class="text-[28px] text-relaxationBrown text-center py-[55px]">
             <p>{{ t('available_milks') }}</p>
@@ -88,11 +91,11 @@
         </article>
 
         <article class="border border-relaxationBrown rounded-[10px] px-[32px] py-[34px] flex justify-between items-center gap-[30px] mt-[70px]">
-            <IconsPinned class="min-w-[106px] min-h-[106px]" />
-            <p class="text-white text-[28px]">
+            <IconsPinned class="min-w-[85px] min-h-[85px]" />
+            <p class="text-white text-[16px]">
                 {{ t('temp_note') }}
             </p>
-            <IconsTemp class="min-w-[141px] min-h-[123px]" />
+            <IconsTemp class="min-w-[120px] min-h-[100px]" />
         </article>
 
         <article class="flex mt-[70px] justify-between items-end text-[28px] text-white pb-[78px]">
