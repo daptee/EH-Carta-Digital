@@ -1,5 +1,5 @@
 <template>
-    <section class="front-cover min-h-screen">
+    <section class="front-cover min-h-screen max-h-screen">
         <div class="pt-[30px]">
             <Logo class="flex m-auto w-[300px]" />
         </div>

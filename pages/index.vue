@@ -1,10 +1,10 @@
 <template>
-<main class="max-w-[768px] w-full min-h-screen max-h-screen h-screen flex flex-col">
+<main class="max-w-[1080px] w-full min-h-screen flex flex-col bg-mainBlue">
   <FrontCover v-show="showFrontCover" @close="showFrontCover = false" />
 
   <section
     v-show="!showFrontCover"
-    class="flex flex-col flex-1 min-h-screen"
+    class="flex flex-col flex-1  bg-mainBlue h-full"
   >
     <header class="bg-mainBlue w-full pt-[112px] px-[107px] flex-shrink-0">
       <div class="flex items-center justify-between">
