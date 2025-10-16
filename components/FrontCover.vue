@@ -1,10 +1,10 @@
 <template>
     <section class="front-cover min-h-screen">
-        <div class="pt-[80px]">
-            <Logo class="flex m-auto" />
+        <div class="pt-[30px]">
+            <Logo class="flex m-auto w-[300px]" />
         </div>
         <div class="relative flex">
-            <Image class="pt-[4em] max-h-[70vh] w-auto grow flex-1" />
+            <Image class="pt-[1em] max-h-[70vh] w-auto grow flex-1" />
             <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex justify-center items-center" @click="emit('close')">
                 <span class="text-[1em] font-semibold underline text-mainBlue">VER MENU</span>
                 <IconsRightArrow />

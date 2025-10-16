@@ -5,8 +5,8 @@
 
         <div class="flex gap-[47px] items-center grow">
             <ImagePopup v-if="principalImage" :image="`${config.public.OUR_EH_CAFETERIA_BASE_URL}${principalImage}`"
-                class="w-[95px] h-[95px]" />
-            <div v-else class="w-[95px] h-[95px] border-[4px] rounded-full border-[#656874]">
+                class="w-[95px] max-h-[95px]" />
+            <div v-else class="w-[95px] max-h-[95px] border-[4px] rounded-full border-[#656874]">
             <IconsPlaceholder class="w-full h-full border-[4px] rounded-full border-[#848690]" />
         </div>
 
