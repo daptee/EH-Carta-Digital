@@ -1,5 +1,5 @@
 <template>
-<main class="min-w-[1080px] max-w-[1080px] min-h-screen flex flex-col">
+<main class="max-w-[768px] w-full min-h-screen max-h-screen h-screen flex flex-col">
   <FrontCover v-show="showFrontCover" @close="showFrontCover = false" />
 
   <section
