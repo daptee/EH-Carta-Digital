@@ -1,7 +1,7 @@
 <template>
-  <div class="relative inline-block w-[200px] z-[9999]">
+  <div class="relative inline-block w-[180px] z-[9999]">
     <div
-      class="flex justify-between items-center bg-transparent border border-white rounded-[10px] px-[29px] py-[18px] text-white font-extralight cursor-pointer"
+      class="flex justify-between items-center bg-transparent border border-white rounded-[10px] px-[18px] py-[15px] text-white font-extralight cursor-pointer"
       @click="open = !open"
     >
       <span>{{ selectedLabel }}</span>

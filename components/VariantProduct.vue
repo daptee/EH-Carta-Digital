@@ -1,12 +1,12 @@
 <template>
     <article class="">
-        <h3 class="text-[40px] font-medium text-relaxationBrown mt-[62px]">{{ props.title }}</h3>
+        <h3 class="text-[37px] font-medium text-relaxationBrown mt-[62px]">{{ props.title }}</h3>
         <div class="border-relaxationBrown border-[1px] mb-[62px]" />
 
-        <div class="flex gap-[47px] items-center grow">
+        <div class="flex gap-[30px] items-center grow">
             <ImagePopup v-if="principalImage" :image="`${config.public.OUR_EH_CAFETERIA_BASE_URL}${principalImage}`"
-                class="w-[95px] max-h-[95px]" />
-            <div v-else class="w-[95px] max-h-[95px] border-[4px] rounded-full border-[#656874]">
+                class="w-[75px] max-h-[75px]" />
+            <div v-else class="w-[75px] max-h-[75px] border-[4px] rounded-full border-[#656874]">
             <IconsPlaceholder class="w-full h-full border-[4px] rounded-full border-[#848690]" />
         </div>
 
@@ -15,14 +15,14 @@
                     <div v-for="variant2 in variant.VARIANTES2" :key="variant2.VAR2" class="flex flex-col">
                         <div class="flex justify-between grow gap-[9px]">
 
-                            <p v-if="!variant2.VARIACION2" class="text-[32px] font-medium text-white">{{
+                            <p v-if="!variant2.VARIACION2" class="text-[26px] font-medium text-white">{{
                                 getProductTitle(variant, appStore.language) }}</p>
 
-                            <p v-else class="text-[32px] font-medium text-white">{{ `${getProductTitle(variant,
+                            <p v-else class="text-[26px] font-medium text-white">{{ `${getProductTitle(variant,
                                 appStore.language)} - ${getProductTitle2(variant2, appStore.language)}` }}</p>
 
                             <div class="border-b-[0.5px] border-white grow mb-[15px]" />
-                            <p class="text-[32px] font-medium text-white">
+                            <p class="text-[26px] font-medium text-white">
                                 ${{ formatPrice(Number(getPrice(variant2, appStore.language))) }}
                             </p>
                         </div>
