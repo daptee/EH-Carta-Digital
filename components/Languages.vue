@@ -34,8 +34,8 @@ const selected = ref<Locale>(appStore.language)
 
 const languagesOptions: { value: Locale, label: string }[] = [
   { value: 'es', label: 'ESPAÑOL' },
-  { value: 'en', label: 'ENGLISH' },
-  { value: 'pt', label: 'PORTUGUÊS' }
+  { value: 'en', label: 'ENGLISH' }
+  // { value: 'pt', label: 'PORTUGUÊS' }
 ]
 
 const selectedLabel = computed(() => {
