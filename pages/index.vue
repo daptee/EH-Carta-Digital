@@ -6,9 +6,9 @@
     v-show="!showFrontCover"
     class="flex flex-col flex-1  bg-mainBlue h-full"
   >
-    <header class="bg-mainBlue w-full pt-[112px] px-[107px] flex-shrink-0">
+    <header class="bg-mainBlue w-full pt-[32px] px-[107px] flex-shrink-0">
       <div class="flex items-center justify-between">
-        <Logo class="w-[270px]" />
+        <Logo class="w-[240px]" />
         <Languages />
       </div>
     </header>

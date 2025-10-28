@@ -1,15 +1,15 @@
 <template>
-    <div class="flex gap-[47px] items-center grow">
+    <div class="flex gap-[30px] items-center grow">
 
-        <ImagePopup v-if="principalImage" :image="`${config.public.OUR_EH_CAFETERIA_BASE_URL}${principalImage}`" class="w-[95px] h-[95px]" />
-        <div v-else class="w-[95px] h-[95px] border-[4px] rounded-full border-[#656874]">
+        <ImagePopup v-if="principalImage" :image="`${config.public.OUR_EH_CAFETERIA_BASE_URL}${principalImage}`" class="w-[75px] h-[75px]" />
+        <div v-else class="w-[75px] h-[75px] border-[4px] rounded-full border-[#656874]">
             <IconsPlaceholder class="w-full h-full border-[4px] rounded-full border-[#848690]" />
         </div>
         
         <div class="flex justify-between grow gap-[9px]">
-            <p class="text-[32px] font-medium text-white">{{ getProductName(props.product, appStore.language) }}</p>
+            <p class="text-[26px] font-medium text-white">{{ getProductName(props.product, appStore.language) }}</p>
             <div class="border-b-[0.5px] border-white grow mb-[15px]" />
-            <p class="text-[32px] font-medium text-white">${{
+            <p class="text-[26px] font-medium text-white">${{
                 formatPrice(Number(getPrice(props.product.VARIANTES1[0].VARIANTES2[0], appStore.language))) }}</p>
         </div>
     </div>

@@ -6,7 +6,7 @@
         <div class="relative flex">
             <Image class="pt-[1em] max-h-[70vh] w-auto grow flex-1" />
             <div class="absolute bottom-2 left-1/2 -translate-x-1/2 flex justify-center items-center" @click="emit('close')">
-                <span class="text-[1em] font-semibold underline text-mainBlue">VER MENU</span>
+                <span class="text-[1.5em] font-semibold underline text-mainBlue">VER MENU</span>
                 <IconsRightArrow />
             </div>
         </div>
