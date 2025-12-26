@@ -23,7 +23,7 @@
 
                             <div class="border-b-[0.5px] border-white grow mb-[15px]" />
                             <p class="text-[26px] font-medium text-white">
-                                ${{ formatPrice(Number(getPrice(variant2, appStore.language))) }}
+                                ${{ formatPrice(getPrice(variant2, appStore.language), appStore.language) }}
                             </p>
                         </div>
 
