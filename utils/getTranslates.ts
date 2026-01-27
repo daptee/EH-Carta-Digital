@@ -45,9 +45,9 @@ export const getPrice = (variant: Variant2, language: string) => {
         case 'es':
             return variant.PRECIO
         case 'en':
-            return variant.PRECIO_DOLAR
+            return variant.PRECIO
         case 'pt':
-            return variant.PRECIO_DOLAR
+            return variant.PRECIO
         default:
             return variant.PRECIO
     }

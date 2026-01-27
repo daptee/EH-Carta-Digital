@@ -13,7 +13,7 @@ export const formatPrice = (value: number | string, language: string) => {
   if (isNaN(number)) return '0';
 
   return number.toLocaleString('es-AR', {
-    minimumFractionDigits: language === 'es' ? 0 : 2,
-    maximumFractionDigits: language === 'es' ? 0 : 2
+    minimumFractionDigits: language === 'es' ? 0 : 0,
+    maximumFractionDigits: language === 'es' ? 0 : 0
   });
 };
