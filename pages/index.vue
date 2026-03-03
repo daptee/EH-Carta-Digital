@@ -113,8 +113,28 @@ const getCategoryProducts = async () => {
         }
       })
       .sort((a, b) => {
-        if (a.RUBRO === 'CAFETERIA') return -1
-        if (b.RUBRO === 'CAFETERIA') return 1
+        const orderIds = [
+          8,   // CAFETERIA
+          32,  // DESAYUNO O MERIENDA
+          23,  // PATISSERIE
+          27,  // SIN GLUTEN
+          19,  // BRUNCH
+          14,  // BEBIDAS SIN ALCOHOL
+          15,  // BEBIDAS CON ALCOHOL
+          18   // VIANDAS
+        ]
+        
+        const getIndex = (id: number | string) => {
+          if (!id) return -1
+          return orderIds.indexOf(Number(id))
+        }
+
+        const indexA = getIndex(a.ID)
+        const indexB = getIndex(b.ID)
+
+        if (indexA !== -1 && indexB !== -1) return indexA - indexB
+        if (indexA !== -1) return -1
+        if (indexB !== -1) return 1
         return 0
       })
   } catch (err) {
