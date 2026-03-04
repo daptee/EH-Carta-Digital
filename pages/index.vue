@@ -90,7 +90,10 @@ const getCategoryProducts = async () => {
       fetchProductsImages()
     ])
 
+    const EXCLUDED_CATEGORY_IDS = [25, 29] // 25: PRINCIPALES, 29: SERVICIOS SUITES
+
     categories.value = categoriesResponse
+      .filter(cat => !EXCLUDED_CATEGORY_IDS.includes(Number(cat.ID)))
       .map(cat => {
         const imageData = imagesResponse.find(img => img.cod_category === cat.ID)
 
