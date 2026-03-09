@@ -90,7 +90,7 @@ const getCategoryProducts = async () => {
       fetchProductsImages()
     ])
 
-    const EXCLUDED_CATEGORY_IDS = [25, 29] // 25: PRINCIPALES, 29: SERVICIOS SUITES
+    const EXCLUDED_CATEGORY_IDS = [25, 29, 40] // 25: PRINCIPALES, 29: SERVICIOS SUITES, 9: TE
 
     categories.value = categoriesResponse
       .filter(cat => !EXCLUDED_CATEGORY_IDS.includes(Number(cat.ID)))
