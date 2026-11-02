@@ -1,172 +1,92 @@
-<template>
-    <section>
-        <section class="px-[84px] pt-[56px] bg-mainBlue">
-        <article
-  class="flex justify-center gap-[32px] text-[28px] text-white"
->
-  <div class="flex flex-col items-center gap-[13px] min-w-[60px]">
-    <IconsWater class="w-[70px] h-[70px]" />
-    <p>{{ t('water') }}</p>
-  </div>
-  <div class="flex flex-col items-center gap-[13px] min-w-[60px]">
-    <IconsMilk class="w-[70px] h-[70px]" />
-    <p>{{ t('milk') }}</p>
-  </div>
-  <div class="flex flex-col items-center gap-[13px] min-w-[60px]">
-    <IconsFoam class="w-[70px] h-[70px]" />
-    <p>{{ t('foam') }}</p>
-  </div>
-  <div class="flex flex-col items-center gap-[13px] min-w-[60px]">
-    <IconsChocolate class="w-[70px] h-[70px]" />
-    <p>{{ t('chocolate') }}</p>
-  </div>
-  <div class="flex flex-col items-center gap-[13px] min-w-[60px]">
-    <IconsCoffe class="w-[70px] h-[70px]" />
-    <p>{{ t('coffee') }}</p>
-  </div>
-  <div class="flex flex-col items-center gap-[13px] min-w-[60px]">
-    <IconsIce class="w-[70px] h-[70px]" />
-    <p>{{ t('ice') }}</p>
-  </div>
-</article>
-
-
-        <article class="text-[24px] text-relaxationBrown text-center py-[55px]">
-            <p>{{ t('available_milks') }}</p>
-            <p>{{ t('milk_list') }}</p>
-        </article>
-
-        <article class="grid grid-cols-4 grid-rows-2 gap-[13px] text-[28px] text-white">
-            <div class="flex flex-col items-center gap-[13px]">
-                <IconsExpresso class="grow w-[85px] h-[85px]" />
-                <p>{{ t('espresso') }}</p>
-            </div>
-
-            <div class="flex flex-col items-center gap-[13px]">
-                <IconsLungo class="grow w-[85px] h-[85px]" />
-                <p>{{ t('lungo') }}</p>
-            </div>
-
-            <div class="flex flex-col items-center gap-[13px]">
-                <IconsAmericano class="grow w-[85px] h-[85px]" />
-                <p>{{ t('americano') }}</p>
-            </div>
-
-            <div class="flex flex-col items-center gap-[13px] row-span-2 justify-center">
-                <IconsFiltered class="w-[100px] h-[100px]" />
-                <p>{{ t('filtered') }}</p>
-            </div>
-
-            <div class="flex flex-col items-center gap-[13px]">
-                <IconsCapuccino class="grow w-[85px] h-[85px]" />
-                <p>{{ t('capuccino') }}</p>
-            </div>
-
-            <div class="flex flex-col items-center gap-[13px]">
-                <IconsFlatWhite class="grow w-[85px] h-[85px]" />
-                <p>{{ t('flat_white') }}</p>
-            </div>
-
-            <div class="flex flex-col items-center gap-[13px]">
-                <IconsLatte class="grow w-[85px] h-[85px]" />
-                <p>{{ t('latte') }}</p>
-            </div>
-        </article>
-
-        <article class="text-[24px] text-white flex justify-center py-[29px] border-t border-b border-relaxationBrown w-[590px] m-auto mt-[70px] gap-[33px] items-end">
-            <div class="flex flex-col gap-[13px] items-center">
-                <Icons240 />
-                <p>{{ t('volume_240') }}</p>
-            </div>
-
-            <div class="flex flex-col gap-[13px] items-center">
-                <Icons180 />
-                <p>{{ t('volume_180') }}</p>
-            </div>
-
-            <div class="flex flex-col gap-[13px] items-center">
-                <Icons100 />
-                <p>{{ t('volume_100') }}</p>
-            </div>
-        </article>
-
-        <article class="border border-relaxationBrown rounded-[10px] px-[28px] py-[34px] flex justify-between items-center gap-[20px] mt-[70px]">
-            <IconsPinned class="min-w-[65px] min-h-[65px]" />
-            <p class="text-white text-[22px] text-pretty leading-6">
-                {{ t('temp_note') }}
-            </p>
-            <IconsTemp class="min-w-[100px] min-h-[100px]" />
-        </article>
-
-        <article class="flex mt-[70px] justify-between items-end text-[24px] text-white pb-[78px]">
-            <div class="flex flex-col gap-[13px] items-center">
-                <IconsIcedCoffe class="w-[95px] h-[95px]" />
-                <p>{{ t('iced_coffee') }}</p>
-            </div>
-
-             <div class="flex flex-col gap-[13px] items-center">
-                <IconsMate class="w-[95px] h-[95px]" />
-                <p>{{ t('mate') }}</p>
-            </div>
-
-             <div class="flex flex-col gap-[13px] items-center">
-                <IconsWhitoutAlcohol class="w-[95px] h-[95px]" />
-                <p>{{ t('without_alcohol') }}</p>
-            </div>
-
-             <div class="flex flex-col gap-[13px] items-center">
-                <IconsWithAlcohol class="w-[95px] h-[95px]" />
-                <p>{{ t('with_alcohol') }}</p>
-            </div>
-        </article>
-
-        
-    </section>
-
-    <section>
-        <article class="takeaway py-[51px] px-[107px] flex flex-col gap-[20px]">
-            <div class="flex items-center gap-[5px]">
-                <p class="text-[50px] text-white font-semibold ">{{ t('takeaway') }}</p>
-                <IconsTakeAway class="max-w-[300px] grow"  />
-            </div>
-
-            <div class="flex gap-[22px] items-center justify-between">
-                <IconsHand class="w-[60px] h-[60px]" />
-                <p class="text-white text-[26px] font-semibold">{{ t('beans') }}</p>
-                <IconsCoffeBean class="w-[60px] h-[60px]" />
-            </div>
-
-            <div class="border border-relaxationBrown rounded-[10px] py-[18px] text-center">
-                <p class="text-white text-[32px] font-semibold">{{ t('discount') }}</p>
-            </div>
-        </article>
-    </section>
-    </section>
-</template>
-
 <script setup lang="ts">
-import { useAppStore } from '~/store/appStore'
+const { t } = useTranslate()
 
-import es from '~/i18n/lang/es.json'
-import en from '~/i18n/lang/en.json'
-import pt from '~/i18n/lang/pt.json'
+const INGREDIENTS = [
+  { key: 'water', icon: 'water_drop' },
+  { key: 'milk', icon: 'local_drink' },
+  { key: 'foam', icon: 'waves' },
+  { key: 'chocolate', icon: 'cookie' },
+  { key: 'coffee', icon: 'coffee' },
+  { key: 'ice', icon: 'ac_unit' },
+] as const
 
-const appStore = useAppStore()
+const PREPARATIONS = [
+  { key: 'espresso', icon: 'coffee' },
+  { key: 'lungo', icon: 'coffee' },
+  { key: 'americano', icon: 'local_cafe' },
+  { key: 'capuccino', icon: 'emoji_food_beverage' },
+  { key: 'flatWhite', icon: 'local_cafe' },
+  { key: 'latte', icon: 'local_cafe' },
+  { key: 'filtered', icon: 'coffee_maker' },
+] as const
 
-const messages: Record<string, Record<string, string>> = {
-  es,
-  en,
-  pt,
-}
-
-const t = (key: string) => {
-  const lang = appStore.language || 'es'
-  return messages[lang][key] || key
-}
+const SIZES = ['240cc', '180cc', '100cc']
 </script>
 
-<style scoped>
-.takeaway {
-    background: linear-gradient(1.17deg, #774012 20.08%, #AF733C 64.45%);
-}
-</style>
+<template>
+  <div>
+    <div class="flex justify-center px-[48px] pt-[48px]">
+      <p v-reveal class="max-w-[860px] text-center font-display text-[42px] leading-[1.4] font-normal text-[#cbc6ba] italic">
+        {{ t('cafeInfo.intro') }}
+      </p>
+    </div>
+
+    <div class="px-[48px] pt-[56px]">
+      <div v-reveal class="mb-[26px] font-body text-[22px] font-normal tracking-[0.24em] text-gold uppercase">{{ t('cafeInfo.ingredientsTitle') }}</div>
+      <div class="grid grid-cols-6 gap-[20px]">
+        <div
+          v-for="(ing, i) in INGREDIENTS"
+          v-reveal="i * 70"
+          :key="ing.key"
+          class="flex flex-col items-center gap-[16px] rounded-[20px] border border-white/7 bg-[#111721] px-[10px] py-[30px]"
+        >
+          <span class="ms text-[48px] text-gold">{{ ing.icon }}</span>
+          <span class="text-center font-body text-[26px] font-light tracking-[0.04em] text-[#cbc6ba]">{{ t(`cafeInfo.ingredients.${ing.key}`) }}</span>
+        </div>
+      </div>
+      <div v-reveal class="mt-[26px] flex items-start gap-[18px] rounded-[20px] border border-gold/22 bg-gold/8 px-[30px] py-[26px]">
+        <span class="ms text-[36px] text-gold">info</span>
+        <span class="font-body text-[28px] leading-[1.5] font-light text-[#cbc6ba]">{{ t('cafeInfo.milkNote') }}</span>
+      </div>
+    </div>
+
+    <div class="px-[48px] pt-[56px]">
+      <div v-reveal class="mb-[24px] text-center font-body text-[22px] font-normal tracking-[0.24em] text-gold uppercase">{{ t('cafeInfo.preparationsTitle') }}</div>
+      <div class="flex flex-wrap justify-center gap-[16px]">
+        <div
+          v-for="(prep, i) in PREPARATIONS"
+          v-reveal="i * 60"
+          :key="prep.key"
+          class="flex items-center gap-[14px] rounded-full border border-white/8 bg-[#111721] py-[16px] pr-[32px] pl-[24px]"
+        >
+          <span class="ms text-[36px] text-gold">{{ prep.icon }}</span>
+          <span class="font-body text-[28px] font-light text-[#e3ddd1]">{{ t(`cafeInfo.preparations.${prep.key}`) }}</span>
+        </div>
+      </div>
+
+      <div v-reveal class="mt-[32px] flex flex-col items-center gap-[16px] border-t border-white/8 pt-[28px]">
+        <div class="flex justify-center gap-[40px]">
+          <span v-for="size in SIZES" :key="size" class="font-display text-[46px] font-medium text-cream">{{ size }}</span>
+        </div>
+        <span class="font-body text-[22px] font-light tracking-[0.2em] text-muted-2">{{ t('cafeInfo.sizesLabel').toUpperCase() }}</span>
+      </div>
+    </div>
+
+    <div class="px-[48px] pt-[56px]">
+      <div
+        v-reveal
+        class="flex items-center gap-[34px] overflow-hidden rounded-[28px] border border-gold/32 bg-[linear-gradient(150deg,#241b12,#14100b)] px-[46px] py-[44px]"
+      >
+        <span class="ms flex-none text-[66px] text-gold">takeout_dining</span>
+        <div class="flex-1">
+          <div class="font-display text-[58px] leading-none font-medium text-cream">{{ t('cafeInfo.takeawayTitle') }}</div>
+          <div class="mt-[12px] font-body text-[28px] font-light text-[#cbc6ba]">{{ t('cafeInfo.takeawayBody') }}</div>
+        </div>
+        <div class="flex flex-none items-center gap-[16px] rounded-full border border-gold/40 bg-gold/14 px-[32px] py-[20px]">
+          <span class="ms text-[32px] text-gold">sell</span>
+          <span class="font-body text-[26px] font-normal text-cream">{{ t('cafeInfo.takeawayOffer') }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

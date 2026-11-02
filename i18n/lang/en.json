@@ -1,34 +1,37 @@
 {
-  "water": "Water",
-  "milk": "Milk",
-  "foam": "Foam",
-  "chocolate": "Chocolate",
-  "coffee": "Coffee",
-  "ice": "Ice",
-
-  "available_milks": "Milks available for coffee:",
-  "milk_list": "whole, skimmed, lactose-free, almond",
-
-  "espresso": "Espresso",
-  "lungo": "Lungo",
-  "americano": "Americano",
-  "filtered": "Filtered",
-  "capuccino": "Cappuccino",
-  "flat_white": "Flat White",
-  "latte": "Latte",
-
-  "volume_240": "240ml",
-  "volume_180": "180ml",
-  "volume_100": "100ml",
-
-  "temp_note": "Specialty coffee temperature is approximately 70°, if you prefer it hotter let our staff know.",
-
-  "iced_coffee": "Iced Coffee",
-  "mate": "Mate",
-  "without_alcohol": "Non-alcoholic",
-  "with_alcohol": "Alcoholic",
-
-  "takeaway": "Take away",
-  "beans": "Take our coffee beans with you",
-  "discount": "10% off plus 5% if you bring your EH mug"
+  "menu": {
+    "title": "Menu",
+    "brand": "EH Café",
+    "cover": "Specialty coffee, pastries and signature dishes.",
+    "viewMenu": "View menu",
+    "loading": "Loading the menu…",
+    "error": "We couldn't load the menu. Please try again in a few minutes."
+  },
+  "cafeInfo": {
+    "intro": "Specialty coffee, roasted and prepared in house. Served at roughly 70°C; if you'd prefer it hotter, just ask our staff.",
+    "ingredientsTitle": "How it's made",
+    "preparationsTitle": "Preparations",
+    "sizesLabel": "Sizes",
+    "milkNote": "Milk options for coffees: whole, skim, lactose-free, almond.",
+    "takeawayTitle": "Take away",
+    "takeawayBody": "Take our roasted coffee beans home.",
+    "takeawayOffer": "10% off, plus 5% more if you bring your own EH mug",
+    "ingredients": {
+      "water": "Water",
+      "milk": "Milk",
+      "foam": "Foam",
+      "chocolate": "Chocolate",
+      "coffee": "Coffee",
+      "ice": "Ice"
+    },
+    "preparations": {
+      "espresso": "Espresso",
+      "lungo": "Lungo",
+      "americano": "Americano",
+      "capuccino": "Cappuccino",
+      "flatWhite": "Flat White",
+      "latte": "Latte",
+      "filtered": "Filtered"
+    }
+  }
 }

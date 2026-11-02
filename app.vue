@@ -1,5 +1,5 @@
 <template>
-    <div class="flex items-center justify-center bg-mainBlue h-full">
+    <div class="flex justify-center bg-bg min-h-screen">
       <NuxtPage />
     </div>
 </template>
