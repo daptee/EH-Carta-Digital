@@ -1,50 +1,30 @@
 <template>
-  <div class="relative inline-block w-[180px] z-[9999]">
-    <div
-      class="flex justify-between items-center bg-transparent border border-white rounded-[10px] px-[18px] py-[15px] text-white font-extralight cursor-pointer"
-      @click="open = !open"
+  <div class="flex items-center gap-[4px] rounded-full border border-white/14 bg-[rgba(6,8,11,.4)] p-[4px]">
+    <button
+      v-for="lang in languagesOptions"
+      :key="lang.value"
+      type="button"
+      class="rounded-full px-[22px] py-[10px] font-body text-[16px] tracking-[0.14em] transition-colors"
+      :class="[
+        appStore.language === lang.value
+          ? 'bg-gradient-to-b from-[#cba968] to-[#b5924f] font-medium text-[#1a140a]'
+          : 'font-light text-[#9c9a90]',
+      ]"
+      @click="appStore.setLanguage(lang.value)"
     >
-      <span>{{ selectedLabel }}</span>
-      <IconsDownArrow class="text-gray-400" />
-    </div>
-
-    <ul
-      v-if="open"
-      class="absolute mt-2 w-full bg-[#2b2f3a] border border-white rounded-[10px] z-50"
-    >
-      <li
-        v-for="lang in languagesOptions"
-        :key="lang.value"
-        @click="selectLanguage(lang)"
-        class="px-[29px] py-[18px] cursor-pointer hover:bg-gray-600 text-white font-extralight"
-      >
-        {{ lang.label }}
-      </li>
-    </ul>
+      {{ lang.label }}
+    </button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
 import { useAppStore, type Locale } from '~/store/appStore'
 
-const open = ref(false)
 const appStore = useAppStore()
-const selected = ref<Locale>(appStore.language)
 
 const languagesOptions: { value: Locale, label: string }[] = [
-  { value: 'es', label: 'ESPAÑOL' },
-  { value: 'en', label: 'ENGLISH' }
-  // { value: 'pt', label: 'PORTUGUÊS' }
+  { value: 'es', label: 'ES' },
+  { value: 'en', label: 'EN' }
+  // { value: 'pt', label: 'PT' }
 ]
-
-const selectedLabel = computed(() => {
-  return languagesOptions.find(lang => lang.value === selected.value)?.label || ''
-})
-
-const selectLanguage = (lang: { value: Locale, label: string }) => {
-  selected.value = lang.value
-  appStore.setLanguage(lang.value)
-  open.value = false
-}
 </script>

@@ -78,3 +78,23 @@ export const getProductTitle2 = (variant: Variant2, language: string) => {
             return variant.VARIACION2
     }
 }
+
+export interface ProductCombo {
+    key: string
+    variant: Variant
+    variant2: Variant2
+}
+
+/** Every VARIACION1 × VARIACION2 pair of a product, flattened — one menu row each. */
+export const getProductCombos = (product: Product): ProductCombo[] => {
+    return product.VARIANTES1.flatMap(variant =>
+        variant.VARIANTES2.map(variant2 => ({ key: `${variant.VAR1}-${variant2.VAR2}`, variant, variant2 }))
+    )
+}
+
+export const getComboLabel = (product: Product, combo: ProductCombo, language: string) => {
+    const label1 = getProductTitle(combo.variant, language)
+    const label2 = getProductTitle2(combo.variant2, language)
+    if (label1 && label2) return `${label1} - ${label2}`
+    return label1 || label2 || getProductName(product, language)
+}

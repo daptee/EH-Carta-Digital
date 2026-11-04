@@ -1,34 +1,37 @@
 {
-  "water": "Água",
-  "milk": "Leite",
-  "foam": "Espuma",
-  "chocolate": "Chocolate",
-  "coffee": "Café",
-  "ice": "Gelo",
-
-  "available_milks": "Leites disponíveis para cafés:",
-  "milk_list": "integral, desnatado, sem lactose, amêndoas",
-
-  "espresso": "Expresso",
-  "lungo": "Lungo",
-  "americano": "Americano",
-  "filtered": "Filtrado",
-  "capuccino": "Capuccino",
-  "flat_white": "Flat White",
-  "latte": "Latte",
-
-  "volume_240": "240ml",
-  "volume_180": "180ml",
-  "volume_100": "100ml",
-
-  "temp_note": "A temperatura do café especial é de aproximadamente 70°, se preferir mais quente, informe à equipe.",
-
-  "iced_coffee": "Iced Coffee",
-  "mate": "Chimarrão",
-  "without_alcohol": "Sem Álcool",
-  "with_alcohol": "Com Álcool",
-
-  "takeaway": "Take away",
-  "beans": "Leve nosso café em grãos",
-  "discount": "10% off mais 5% se trouxer sua caneca EH"
+  "menu": {
+    "title": "Cardápio",
+    "brand": "EH Café",
+    "cover": "Café especial, confeitaria e cozinha autoral.",
+    "viewMenu": "Ver cardápio",
+    "loading": "Carregando o cardápio…",
+    "error": "Não foi possível carregar o cardápio. Tente novamente em alguns minutos."
+  },
+  "cafeInfo": {
+    "intro": "Café especial, torrado e preparado na casa. Servido a aproximadamente 70°; se preferir mais quente, peça à equipe.",
+    "ingredientsTitle": "Como é feito",
+    "preparationsTitle": "Preparos",
+    "sizesLabel": "Tamanhos",
+    "milkNote": "Leites disponíveis para cafés: integral, desnatado, sem lactose, amêndoas.",
+    "takeawayTitle": "Take away",
+    "takeawayBody": "Leve nosso café em grãos.",
+    "takeawayOffer": "10% off mais 5% se trouxer sua caneca EH",
+    "ingredients": {
+      "water": "Água",
+      "milk": "Leite",
+      "foam": "Espuma",
+      "chocolate": "Chocolate",
+      "coffee": "Café",
+      "ice": "Gelo"
+    },
+    "preparations": {
+      "espresso": "Espresso",
+      "lungo": "Lungo",
+      "americano": "Americano",
+      "capuccino": "Cappuccino",
+      "flatWhite": "Flat White",
+      "latte": "Latte",
+      "filtered": "Filtrado"
+    }
+  }
 }

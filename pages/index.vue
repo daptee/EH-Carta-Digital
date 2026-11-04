@@ -1,61 +1,55 @@
 <template>
-<main class="max-w-[1080px] w-full min-h-screen flex flex-col bg-mainBlue">
-  <FrontCover v-show="showFrontCover" @close="showFrontCover = false" />
+<main class="max-w-[1080px] w-full min-h-screen flex flex-col bg-bg font-body">
+  <Transition name="cover">
+    <FrontCover v-show="showFrontCover" @close="showFrontCover = false" />
+  </Transition>
 
-  <section
-    v-show="!showFrontCover"
-    class="flex flex-col flex-1  bg-mainBlue h-full"
-  >
-    <header class="bg-mainBlue w-full pt-[32px] px-[107px] flex-shrink-0">
-      <div class="flex items-center justify-between">
-        <Logo class="w-[240px]" />
+  <Transition name="menu">
+  <section v-show="!showFrontCover" class="flex flex-col flex-1 bg-bg">
+    <!-- Whole menu rendered at 80%, same as EH Café in the app suite. CSS `zoom` (unlike
+         `transform: scale`) also shrinks the layout box, so scrolling and the sticky nav keep working. -->
+    <div class="flex flex-col flex-1" :style="{ zoom: MENU_ZOOM }">
+      <header class="flex flex-shrink-0 items-center justify-between border-b border-white/8 px-[48px] py-[28px]">
+        <button type="button" aria-label="Portada" @click="showFrontCover = true">
+          <img src="/logos/eh-logo-horizontal-blanco.svg" class="w-[240px]" alt="EH Boutique Experience" />
+        </button>
         <Languages />
+      </header>
+
+      <!-- Enter-only fade: the outgoing branch leaves instantly so the content is in the DOM right
+           away for `setupObserver()` (an out-in transition would delay it past that nextTick). -->
+      <Transition name="swap">
+      <div v-if="isLoading" class="flex flex-1 flex-col items-center justify-center gap-[24px] py-[200px]">
+        <span class="h-[64px] w-[64px] animate-spin rounded-full border-[3px] border-gold/26 border-t-gold" />
+        <p class="font-body text-[22px] font-light tracking-[0.06em] text-muted-2">{{ t('menu.loading') }}</p>
       </div>
-    </header>
 
-    <div class="flex-1 flex items-center justify-center" v-if="isLoading">
-      <svg
-        class="animate-spin h-40 w-40 text-blue-500"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-      >
-        <circle
-          class="opacity-25"
-          cx="12"
-          cy="12"
-          r="10"
-          stroke="currentColor"
-          stroke-width="4"
-        ></circle>
-        <path
-          class="opacity-75"
-          fill="currentColor"
-          d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-        ></path>
-      </svg>
-    </div>
+      <div v-else-if="!categories.length" class="flex flex-1 flex-col items-center justify-center gap-[16px] px-[48px] py-[200px] text-center">
+        <span class="ms text-[58px] text-gold/50">restaurant_menu</span>
+        <p class="max-w-[520px] font-body text-[22px] font-light text-muted-2">{{ t('menu.error') }}</p>
+      </div>
 
-    <div v-else>
-      <HeaderList v-model:selectedCategory="selectedCategory" :categories="categories" />
+      <div v-else>
+        <HeaderList v-model:selectedCategory="selectedCategory" :categories="categories" />
 
-      <article
-        v-for="category in categories"
-        :key="category.ID"
-        :id="category.ID"
-        class="category-section"
-      >
-        <section class="flex flex-col header-section pt-[127px]">
+        <article
+          v-for="category in categories"
+          :key="category.ID"
+          :id="category.ID"
+          class="category-section scroll-mt-[108px]"
+        >
           <HeaderCategory
             :title="getCategoryTitle(category, language.language)"
             :img="category.img"
           />
-        </section>
-        <CafeLanding v-if="category.RUBRO === 'CAFETERIA'" />
-        <ProductsList :title="category.RUBRO" :products="category.products" />
-      </article>
+          <CafeLanding v-if="category.RUBRO === 'CAFETERIA'" />
+          <ProductsList :title="category.RUBRO" :products="category.products" />
+        </article>
+      </div>
+      </Transition>
     </div>
   </section>
+  </Transition>
 </main>
 
 </template>
@@ -66,6 +60,8 @@ import { fetchProducts, fetchProductsImages } from '~/services/categories/produc
 import { useAppStore } from '~/store/appStore';
 import type { CategoryWithImage } from '~/types/Categories';
 import { getCategoryTitle } from '~/utils/getTranslates';
+import { sortByOrder } from '~/utils/sortByOrder';
+import { fetchMenuOrder } from '~/services/menuOrder/menuOrder.service';
 import { onMounted, onBeforeUnmount, nextTick, watch, ref } from 'vue';
 
 const showFrontCover = ref(true)
@@ -73,7 +69,10 @@ const config = useRuntimeConfig()
 const categories = ref<CategoryWithImage[]>([])
 const language = useAppStore()
 const selectedCategory = ref<string | number | null>(null)
-const isLoading = ref(false)
+const isLoading = ref(true)
+const { t } = useTranslate()
+
+const MENU_ZOOM = 0.8
 
 const getCategoryProducts = async () => {
   try {
@@ -82,12 +81,15 @@ const getCategoryProducts = async () => {
       categoriesResponse,
       imagesResponse,
       productsResponse,
-      imagesProductsResponse
+      imagesProductsResponse,
+      menuOrder
     ] = await Promise.all([
       fetchCategories(3),
       fetchCategoryImages(),
       fetchProducts(3),
-      fetchProductsImages()
+      fetchProductsImages(),
+      // Orden cargado desde el admin. Si falla, la carta queda con su orden por defecto.
+      fetchMenuOrder().catch(() => null)
     ])
 
     const EXCLUDED_CATEGORY_IDS = [25, 29] // 25: PRINCIPALES, 29: SERVICIOS SUITES
@@ -101,8 +103,11 @@ const getCategoryProducts = async () => {
           ...cat,
           img: imageData?.img ? `${config.public.OUR_EH_CAFETERIA_BASE_URL}${imageData.img}` : null,
           color: imageData?.color ?? null,
-          products: productsResponse
-            .filter(product => product.RUBRO === cat.ID)
+          products: sortByOrder(
+            productsResponse.filter(product => product.RUBRO === cat.ID),
+            menuOrder?.products[cat.ID],
+            product => product.ID
+          )
             .map(product => {
               const productImages = imagesProductsResponse.filter(
                 imgProd => imgProd.product_code.toString() === product.ID.toString()
@@ -115,6 +120,7 @@ const getCategoryProducts = async () => {
             })
         }
       })
+      .filter(cat => cat.products.length > 0)
       .sort((a, b) => {
         const orderIds = [
           8,   // CAFETERIA
@@ -140,6 +146,9 @@ const getCategoryProducts = async () => {
         if (indexB !== -1) return 1
         return 0
       })
+
+    // El orden del admin va encima del orden fijo de arriba (los rubros sin ordenar quedan al final).
+    categories.value = sortByOrder(categories.value, menuOrder?.categories, cat => cat.ID)
   } catch (err) {
     categories.value = []
   } finally {
@@ -205,20 +214,3 @@ onBeforeUnmount(() => {
   if (observer) observer.disconnect()
 })
 </script>
-
-
-
-<style scoped>
-.header-section {
-  background: linear-gradient(357.82deg,
-      #958077 5.36%,
-      #8C7973 12.18%,
-      #736869 18.7%,
-      #5B565E 24.92%,
-      #4A4B57 30.85%,
-      #414552 37.65%,
-      #3E4351 44.18%);
-}
-
-;
-</style>

@@ -1,10 +1,205 @@
-@font-face {
-  font-family: 'Josefin Sans';
-  src: url('/fonts/JosefinSans-VariableFont_wght.ttf') format('truetype');
-  font-weight: 100 900;
-  font-style: normal;
+body {
+  margin: 0;
+  background: #06080b;
+  font-family: 'Jost', system-ui, sans-serif;
 }
 
 * {
-  font-family: 'Josefin Sans', sans-serif;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(198, 166, 103, 0.35) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(198, 166, 103, 0.35);
+  border-radius: 100px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+button {
+  transition:
+    transform 0.13s cubic-bezier(0.22, 0.61, 0.36, 1),
+    border-color 0.22s ease,
+    background 0.22s ease;
+}
+button:active {
+  transform: scale(0.966);
+}
+
+/* Material Symbols icons, same setup as EH-app-suites-2.0. Hidden until the font is ready
+   (plugins/icon-font.client.ts) so the raw ligature text never flashes. */
+.ms {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  font-variation-settings:
+    'FILL' 0,
+    'wght' 250,
+    'GRAD' 0,
+    'opsz' 40;
+  display: inline-block;
+  font-feature-settings: 'liga';
+  -webkit-font-feature-settings: 'liga';
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  overflow: hidden;
+  text-align: center;
+  opacity: 0;
+}
+.ms-ready .ms {
+  opacity: 1;
+}
+
+@keyframes kenburns {
+  0% {
+    transform: scale(1.06) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.14) translate(-1.4%, -1.2%);
+  }
+  100% {
+    transform: scale(1.06) translate(0, 0);
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- Motion ---------- */
+:root {
+  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Always reserve the scrollbar's width, so the layout doesn't jump sideways when the page
+     stops scrolling (cover shown, lightbox locking the body) and the scrollbar disappears. */
+  scrollbar-gutter: stable;
+}
+
+/* Cover ⇄ menu */
+.cover-enter-active,
+.cover-leave-active {
+  transition:
+    opacity 0.6s ease,
+    transform 0.8s var(--ease-out);
+}
+.cover-enter-from,
+.cover-leave-to {
+  opacity: 0;
+  transform: scale(1.04);
+}
+
+.menu-enter-active {
+  transition:
+    opacity 0.7s ease 0.15s,
+    transform 0.8s var(--ease-out) 0.15s;
+}
+.menu-enter-from {
+  opacity: 0;
+  transform: translateY(18px);
+}
+.menu-leave-active {
+  transition: opacity 0.4s ease;
+}
+.menu-leave-to {
+  opacity: 0;
+}
+
+/* Loading ⇄ content (enter-only, see pages/index.vue) */
+.swap-enter-active {
+  transition: opacity 0.5s ease;
+}
+.swap-enter-from {
+  opacity: 0;
+}
+.swap-leave-active {
+  display: none;
+}
+
+/* Lightbox */
+.lightbox-enter-active,
+.lightbox-leave-active {
+  transition: opacity 0.3s ease;
+}
+.lightbox-enter-active img,
+.lightbox-leave-active img {
+  transition: transform 0.4s var(--ease-out);
+}
+.lightbox-enter-from,
+.lightbox-leave-to {
+  opacity: 0;
+}
+.lightbox-enter-from img,
+.lightbox-leave-to img {
+  transform: scale(0.94);
+}
+
+/* Scroll reveal (plugins/reveal.client.ts) */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.9s var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+.reveal.is-revealed {
+  opacity: 1;
+  transform: none;
+}
+
+.reveal-zoom img {
+  transform: scale(1.1);
+  transition: transform 1.8s var(--ease-out);
+}
+.reveal-zoom .hero-text {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.8s ease 0.2s,
+    transform 0.9s var(--ease-out) 0.2s;
+}
+.reveal-zoom.is-revealed img,
+.reveal-zoom.is-revealed .hero-text {
+  opacity: 1;
+  transform: none;
+}
+
+/* Product photos: soft lift on press */
+.photo-zoom img {
+  transition: transform 0.5s var(--ease-out);
+}
+.photo-zoom:active img {
+  transform: scale(1.05);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+  }
 }
