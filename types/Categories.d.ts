@@ -26,4 +26,6 @@ export interface CategoryWithImage extends Category {
 
 export interface ProductWithImage extends Product {
   images: ProductImage[]
+  // Imagen de cada variante (`"<VAR1>.<VAR2>"` → ruta). Solo en artículos con varias variantes; vacío = ninguna tiene.
+  variantImages: Record<string, string>
 }

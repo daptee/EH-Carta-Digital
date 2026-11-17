@@ -52,3 +52,8 @@ export interface ProductImage {
     updated_at: string
     url: string
 }
+// `GET /api/product/images/{id}` → `variations_images`: imágenes de cada variante (`variation` = `"<VAR1>.<VAR2>"`).
+export interface VariationImages {
+    variation: string
+    images: { id: number; url: string }[]
+}
