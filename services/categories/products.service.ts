@@ -1,4 +1,4 @@
-import type { Product, ProductImage } from "~/types/Products"
+import type { Product, ProductImage, VariationImages } from "~/types/Products"
 
 export const fetchProducts = async (categoryId: number) => {
   try {
@@ -15,6 +15,23 @@ export const fetchProducts = async (categoryId: number) => {
   } catch (error) {
     throw error
   }
+}
+
+// Imágenes de cada variante de un artículo (`"<VAR1>.<VAR2>"` → ruta). No vienen en `images_principal`, así
+// que se piden por artículo (solo para los que tienen varias variantes).
+export const fetchVariantImages = async (productId: string): Promise<Record<string, string>> => {
+  const config = useRuntimeConfig()
+  const response: { variations_images?: VariationImages[] } =
+    await $fetch(`${config.public.OUR_EH_CAFETERIA_BASE_URL}/api/product/images/${productId}`, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+      },
+    })
+
+  return Object.fromEntries(
+    (response.variations_images ?? []).flatMap(v => (v.images[0]?.url ? [[v.variation, v.images[0].url]] : []))
+  )
 }
 
 export const fetchProductsImages = async () => {

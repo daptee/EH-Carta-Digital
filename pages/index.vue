@@ -43,7 +43,7 @@
             :img="category.img"
           />
           <CafeLanding v-if="category.RUBRO === 'CAFETERIA'" />
-          <ProductsList :title="category.RUBRO" :products="category.products" />
+          <ProductsList :title="category.RUBRO" :products="category.products" :hidden="hiddenParts" />
         </article>
       </div>
       </Transition>
@@ -56,12 +56,16 @@
 
 <script setup lang="ts">
 import { fetchCategories, fetchCategoryImages } from '~/services/categories/categories.service';
-import { fetchProducts, fetchProductsImages } from '~/services/categories/products.service';
+import { fetchProducts, fetchProductsImages, fetchVariantImages } from '~/services/categories/products.service';
+import { getProductCombos } from '~/utils/getTranslates';
 import { useAppStore } from '~/store/appStore';
 import type { CategoryWithImage } from '~/types/Categories';
 import { getCategoryTitle } from '~/utils/getTranslates';
 import { sortByOrder } from '~/utils/sortByOrder';
+import { mergeDuplicateProducts } from '~/utils/mergeDuplicateProducts';
 import { fetchMenuOrder } from '~/services/menuOrder/menuOrder.service';
+import { defaultHiddenParts, fetchHiddenProductParts } from '~/services/appConfig/appConfig.service';
+import type { HiddenProductParts } from '~/types/AppConfig';
 import { onMounted, onBeforeUnmount, nextTick, watch, ref } from 'vue';
 
 const showFrontCover = ref(true)
@@ -70,6 +74,8 @@ const categories = ref<CategoryWithImage[]>([])
 const language = useAppStore()
 const selectedCategory = ref<string | number | null>(null)
 const isLoading = ref(true)
+// Títulos y banners de artículos, y rubros, ocultos desde el admin.
+const hiddenParts = ref<HiddenProductParts>(defaultHiddenParts())
 const { t } = useTranslate()
 
 const MENU_ZOOM = 0.8
@@ -82,20 +88,36 @@ const getCategoryProducts = async () => {
       imagesResponse,
       productsResponse,
       imagesProductsResponse,
-      menuOrder
+      menuOrder,
+      hidden
     ] = await Promise.all([
       fetchCategories(3),
       fetchCategoryImages(),
       fetchProducts(3),
       fetchProductsImages(),
       // Orden cargado desde el admin. Si falla, la carta queda con su orden por defecto.
-      fetchMenuOrder().catch(() => null)
+      fetchMenuOrder().catch(() => null),
+      // Lo ocultado desde el admin. Si falla, se muestra todo (menos los rubros ocultos por defecto).
+      fetchHiddenProductParts().catch(() => null)
     ])
 
-    const EXCLUDED_CATEGORY_IDS = [25, 29] // 25: PRINCIPALES, 29: SERVICIOS SUITES
+    hiddenParts.value = hidden ?? defaultHiddenParts()
+
+    const products = mergeDuplicateProducts(productsResponse)
+
+    // Imágenes de las variantes: una consulta por artículo con varias variantes (los únicos que las muestran).
+    // Si una falla, ese artículo queda sin imágenes de variante.
+    const variantImages: Record<string, Record<string, string>> = Object.fromEntries(
+      await Promise.all(
+        products
+          .filter(product => getProductCombos(product).length > 1)
+          .map(async product => [product.ID, await fetchVariantImages(product.ID).catch(() => ({}))] as const)
+      )
+    )
 
     categories.value = categoriesResponse
-      .filter(cat => !EXCLUDED_CATEGORY_IDS.includes(Number(cat.ID)))
+      // Rubros ocultos desde el admin (por defecto 25: PRINCIPALES y 29: SERVICIOS SUITES).
+      .filter(cat => !hiddenParts.value.categories.includes(String(cat.ID)))
       .map(cat => {
         const imageData = imagesResponse.find(img => img.cod_category === cat.ID)
 
@@ -104,7 +126,7 @@ const getCategoryProducts = async () => {
           img: imageData?.img ? `${config.public.OUR_EH_CAFETERIA_BASE_URL}${imageData.img}` : null,
           color: imageData?.color ?? null,
           products: sortByOrder(
-            productsResponse.filter(product => product.RUBRO === cat.ID),
+            products.filter(product => product.RUBRO === cat.ID),
             menuOrder?.products[cat.ID],
             product => product.ID
           )
@@ -115,7 +137,8 @@ const getCategoryProducts = async () => {
 
               return {
                 ...product,
-                images: productImages.map(imgProd => ({ ...imgProd }))
+                images: productImages.map(imgProd => ({ ...imgProd })),
+                variantImages: variantImages[product.ID] ?? {}
               }
             })
         }
